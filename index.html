@@ -720,7 +720,7 @@ $('cf').addEventListener('submit',e=>{e.preventDefault();const f=e.target,s=f.s.
  $('cp').onclick=async()=>{const t=`To: ${TO}\nSubject: ${s}\n\n${b}`;try{await navigator.clipboard.writeText(t);$('cp').textContent='Copied ✓'}catch(x){$('cp').textContent='Select & copy manually'}};
  $('gm').click()});
 // ---- videos: decode embedded data into blob URLs so they always play
-const urls={};function mk(k){return {A:'assets/video-1.mp4',B:'assets/video-2.mp4'}[k];if(urls[k])return urls[k];const bin=atob($('v'+k).textContent.trim()),a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return urls[k]=URL.createObjectURL(new Blob([a],{type:'video/mp4'}))}
+const urls={};function mk(k){return {A:'video-1.mp4',B:'video-2.mp4'}[k];if(urls[k])return urls[k];const bin=atob($('v'+k).textContent.trim()),a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return urls[k]=URL.createObjectURL(new Blob([a],{type:'video/mp4'}))}
 function vids(){document.querySelectorAll('video[data-vid]').forEach(v=>{if(!v.src)v.src=mk(v.dataset.vid)})}
 setTimeout(()=>{try{vids()}catch(e){console.error(e)}},400);
 document.addEventListener('play',e=>{if(e.target.tagName==='VIDEO')try{vids()}catch(x){}},true);
